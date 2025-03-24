@@ -20,7 +20,7 @@ def run():
     Run the crew.
     """
     inputs = {
-        'topic': 'How Transformer architecture become the origin of LLM',
+        'topic': 'Write the Weather condition of bangladesh 2025',
         'current_year': str(datetime.now().year)
     }
 
