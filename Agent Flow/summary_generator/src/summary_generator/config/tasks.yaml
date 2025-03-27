@@ -1,0 +1,8 @@
+summary_agent_task:
+  description: >
+    make cristal clear and accurate summary about {passage}
+  expected_output: >
+   simple string.
+  agent: summary_agent
+
+

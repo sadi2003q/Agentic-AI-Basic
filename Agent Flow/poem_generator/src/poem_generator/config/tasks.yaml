@@ -1,0 +1,9 @@
+poem_agent_task:
+  description: >
+    Make me an excellent poem about {topic}
+    Add relevant information about the {topic} based on 2025.
+  expected_output: >
+    simple string output, but will have new like after each line of the poem
+  agent: poem_agent
+
+
