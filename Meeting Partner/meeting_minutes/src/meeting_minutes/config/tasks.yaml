@@ -3,11 +3,11 @@ meeting_minutes_summary_task:
     Summarize the meeting transcript into a summary with the following transcript:
     {transcript}
     
-    all this will be written into nice markdown document and this will be well structured.
-    
-    Write the summary to a file called "summary.md" in the "Meeting" directory.  This is provided by the tool.
+    write everything in well documented and markdown format with highlighting all the important line
 
-    Write the action items to a file called "action_items.md" in the "Meeting" directory.  This is provided by the tool.
+    Write the summary to a file called "summary.md" in the "meeting_minutes" directory.  This is provided by the tool.
+
+    Write the action items to a file called "action_items.md" in the "meeting_minutes" directory.  This is provided by the tool.
 
     I would like you to return the action items from the meeting transcript in the following format:
     - Action item 1
@@ -18,18 +18,18 @@ meeting_minutes_summary_task:
 
   expected_output: >
     A summary of the meeting transcript and a list of action items.
-  agent: meeting_minutes_summariser
+  agent: meeting_minute_summariser
 
 meeting_minutes_writing_task:
   description: >
     Write the meeting minutes based on the summary, action items and sentiment.  This should give everything needed to know based on summary and action items.
     Put them into a nice markdown document.
 
-    - Use current Date for the meeting date
-    - Use the company name Sadi__AAI for the company name
-    - User adnan for the name of the organizer
+    - Use Today's Date for the meeting date
+    - Use the company name sadi_ai for the company name
+    - User sadi for the name of the organizer
     - Create a list of attendees from the transcript (make up some if needed)
-    - The location was on a podcast
+    - The location was on google meet
   expected_output: >
     A meeting minutes document
-  agent: meeting_minutes_writer
+  agent: meeting_minute_writer
