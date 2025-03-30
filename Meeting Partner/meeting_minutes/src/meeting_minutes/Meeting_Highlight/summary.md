@@ -1,0 +1,5 @@
+# Meeting Summary
+
+The meeting focused on understanding the fundamentals of electricity, covering topics from electric charges and currents to the forces that govern them. The discussion began with the excess charge theory, explaining how objects become charged by gaining or losing electrons through processes like rubbing amber and fur. The concept of two types of electric charge (positive and negative) was introduced, clarified by the movement of electrons between materials like glass and silk, or plastic and fur. The triboelectric table was mentioned as a tool to predict charge transfer between different materials.
+
+The meeting further touched on the modern atomic picture, explaining the role of electrons, protons, and neutrons in determining the overall charge of an object. Finally, the quantization of charge was discussed, illustrating that electric charge comes in discrete packets, analogous to LEGO bricks, with 'e' being the fundamental unit of charge.
