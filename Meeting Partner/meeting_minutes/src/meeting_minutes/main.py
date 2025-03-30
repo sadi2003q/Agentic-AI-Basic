@@ -79,7 +79,8 @@ def kickoff():
 
 def plot():
     """
-    this will make an animated plot of the crew by making an HTML file in the directory
+    this will make an animated plot of the crew by making an
+    new HTML file in the directory
     :return:
     """
     flow = Meeting_Flow()
