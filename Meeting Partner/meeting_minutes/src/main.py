@@ -5,7 +5,7 @@ from crewai.flow import Flow, listen, start
 from dotenv import load_dotenv
 from pydub.utils import make_chunks
 from pydub import AudioSegment
-from meeting_minutes_crew import Meeting_Minute_crew
+from meeting_minutes.meeting_minutes_crew import Meeting_Minute_crew
 import os
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
@@ -70,6 +70,10 @@ class Meeting_Flow(Flow[Meeting_State]):
 
         meeting_minutes = crew.crew().kickoff(inputs)
         self.state.meeting_minute = meeting_minutes
+
+    @listen(transcribe_meeting)
+    def create_draft_meeting_minutes(self):
+        print("Creating Meeting Minutes")
 
 
 def kickoff():

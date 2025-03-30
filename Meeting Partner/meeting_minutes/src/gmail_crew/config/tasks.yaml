@@ -1,0 +1,6 @@
+gmail_draft_agent_task:
+  description: >
+    sent an email to the client with the provided body : {body}
+  expected_output: >
+    return whether the email was sent successfully or not
+  agent: gmail_draft_agent
