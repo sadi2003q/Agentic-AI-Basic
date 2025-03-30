@@ -77,11 +77,6 @@ def kickoff():
     flow.kickoff()
 
 
-def plot():
-    flow = Meeting_Flow()
-    flow.plot()
-
-
 if __name__ == "__main__":
     Meeting_Flow().kickoff()
-    plot()
+
