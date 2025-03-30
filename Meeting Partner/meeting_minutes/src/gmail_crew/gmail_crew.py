@@ -1,15 +1,11 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
-from crewai_tools import FileWriterTool
-
-file_writer_tool_summary = FileWriterTool(file_name='summary.md')
-file_writer_tool_sentiment = FileWriterTool(file_name='sentiment.md')
-file_writer_tool_action_item = FileWriterTool(file_name='action_item.md')
+from Gmail_Tool.gmail_tools import gmail_tool
 
 
 @CrewBase
-class Meeting_Minute_crew:
-    """Poem Crew"""
+class Gmail_Crew:
+    """Gmail Crew"""
 
     agents_config = "config/agents.yaml"
     tasks_config = "config/tasks.yaml"
@@ -18,10 +14,9 @@ class Meeting_Minute_crew:
     def gmail_draft_agent(self) -> Agent:
         return Agent(
             config=self.agents_config["gmail_draft_agent"],
+            tools=[gmail_tool()]
 
         )
-
-
 
     @task
     def gmail_draft_agent_task(self) -> Task:
@@ -34,8 +29,12 @@ class Meeting_Minute_crew:
         """Creates the Research Crew"""
 
         return Crew(
-            agents=self.agents,  # Automatically created by the @agent decorator
-            tasks=self.tasks,  # Automatically created by the @task decorator
+            agents=self.agents,
+            tasks=self.tasks,
             process=Process.sequential,
             verbose=True,
         )
+
+
+if __name__ == "__main__":
+    gmail_tool.func()

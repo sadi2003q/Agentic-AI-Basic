@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from pydub.utils import make_chunks
 from pydub import AudioSegment
 from meeting_minutes.meeting_minutes_crew import Meeting_Minute_crew
+from gmail_crew.gmail_crew import Gmail_Crew
 import os
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
@@ -73,7 +74,29 @@ class Meeting_Flow(Flow[Meeting_State]):
 
     @listen(transcribe_meeting)
     def create_draft_meeting_minutes(self):
-        print("Creating Meeting Minutes")
+        print("Creating Draft Meeting Minutes")
+
+        crew = Gmail_Crew()
+
+        inputs = {
+            "body": "sorry, I didn't understand"
+        }
+
+        draft_crew = crew.crew().kickoff(inputs)
+        print(f"Draft Crew: {draft_crew}")
+
+
+def demo():
+    print("Creating Draft Meeting Minutes")
+
+    crew = Gmail_Crew()
+
+    inputs = {
+        "body": "sorry, I didn't understand"
+    }
+
+    draft_crew = crew.crew().kickoff(inputs)
+    print(f"Draft Crew: {draft_crew}")
 
 
 def kickoff():
@@ -82,5 +105,5 @@ def kickoff():
 
 
 if __name__ == "__main__":
-    Meeting_Flow().kickoff()
-
+    # Meeting_Flow().kickoff()
+    demo()
