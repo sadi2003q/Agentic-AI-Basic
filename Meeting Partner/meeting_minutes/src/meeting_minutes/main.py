@@ -1,16 +1,15 @@
 #!/usr/bin/env python
-import google.generativeai as genai
+from io import BytesIO
 from pydantic import BaseModel
 from crewai.flow import Flow, listen, start
 from dotenv import load_dotenv
 from pydub.utils import make_chunks
+from openai import OpenAI
 from pydub import AudioSegment
 from meeting_minutes_crew import Meeting_Minute_crew
-import os
 
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-genai.configure(api_key=GOOGLE_API_KEY)
 load_dotenv()
+client = OpenAI()
 
 
 class Meeting_State(BaseModel):
@@ -23,40 +22,34 @@ class Meeting_Flow(Flow[Meeting_State]):
     @start()
     def transcribe_meeting(self):
         path = '/Users/sadi_/Coding/AI Agents/Meeting Partner/audio.wav'
+
+        # Load the audio file
         audio = AudioSegment.from_wav(path)
 
+        # Define chunk length in milliseconds (e.g., 1 minute = 60,000 ms)
         chunk_length_ms = 60000
         chunks = make_chunks(audio, chunk_length_ms)
 
+        # Transcribe each chunk
+        full_transcription = ""
+        self.state.transcript = full_transcription
+        print(f"Transcription: {self.state.transcript}")
         for i, chunk in enumerate(chunks):
-            if i > 5:
+            if i > 1:
                 break
             print(f"Transcribing chunk {i + 1}/{len(chunks)}")
             chunk_path = f"chunk_{i}.wav"
             chunk.export(chunk_path, format="wav")
 
-            try:
-                model = genai.GenerativeModel("gemini-1.5-pro")
+            # Transcribe with Whisper
+            with open(chunk_path, "rb") as audio_file:
+                transcript = client.audio.transcriptions.create(
+                    model="whisper-1", file=audio_file
+                )
+                full_transcription += transcript.text + "\n"
 
-                with open(chunk_path, "rb") as audio_file:
-                    audio_data = audio_file.read()
-
-                content = {
-                    "parts": [
-                        {
-                            "mime_type": "audio/wav",
-                            "data": audio_data,
-                        },
-                        "Transcribe this audio to text.",
-                    ],
-                }
-
-                response = model.generate_content(content)
-                self.state.transcript += " " + response.text
-
-            except Exception as e:
-                return f"An error occurred: {e}"
-        print(self.state.transcript)
+        self.state.transcript = full_transcription
+        print(f"Transcription: {self.state.transcript}")
 
     @listen(transcribe_meeting)
     def generate_transcription(self):
@@ -88,5 +81,4 @@ def plot():
 
 
 if __name__ == "__main__":
-    Meeting_Flow().kickoff()
-    plot()
+    kickoff()

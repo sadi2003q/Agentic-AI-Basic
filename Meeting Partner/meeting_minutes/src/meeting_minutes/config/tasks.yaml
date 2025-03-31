@@ -1,26 +1,26 @@
-meeting_minute_summariser_task:
+meeting_minutes_summary_task:
   description: >
     Summarize the meeting transcript into a summary with the following transcript:
     {transcript}
     
     write everything in well documented and markdown format with highlighting all the important line
 
-    Write the summary to a file called "summary.md" in the "Meeting_Highlight" directory.  This is provided by the tool.
+    Write the summary to a file called "summary.md" in the "meeting_minutes" directory.  This is provided by the tool.
 
-    Write the action items to a file called "action_items.md" in the "Meeting_Highlight" directory.  This is provided by the tool.
+    Write the action items to a file called "action_items.md" in the "meeting_minutes" directory.  This is provided by the tool.
 
     I would like you to return the action items from the meeting transcript in the following format:
     - Action item 1
     - Action item 2
     - ...
 
-    I would also like you to analyze the sentiment of the meeting transcript and write it to a file called "sentiment.md" in the "Meeting_Highlight" directory.  This is provided by the tool.
+    I would also like you to analyze the sentiment of the meeting transcript and write it to a file called "sentiment.md" in the "meeting_minutes" directory.  This is provided by the tool.
 
   expected_output: >
     A summary of the meeting transcript and a list of action items.
   agent: meeting_minute_summariser
 
-meeting_minute_writer_task:
+meeting_minutes_writing_task:
   description: >
     Write the meeting minutes based on the summary, action items and sentiment.  This should give everything needed to know based on summary and action items.
     Put them into a nice markdown document.
