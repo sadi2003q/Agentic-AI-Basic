@@ -5,9 +5,9 @@ from crewai.flow import Flow, listen, start
 from dotenv import load_dotenv
 from pydub.utils import make_chunks
 from pydub import AudioSegment
-from meeting_minutes.meeting_minutes_crew import Meeting_Minute_crew
-from gmail_crew.gmail_crew import Gmail_Crew
 import os
+import Summarisation
+from Email_Agent import Email_Agent
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 genai.configure(api_key=GOOGLE_API_KEY)
@@ -23,14 +23,14 @@ class Meeting_Flow(Flow[Meeting_State]):
 
     @start()
     def transcribe_meeting(self):
-        path = '/Users/sadi_/Coding/AI Agents/Meeting Partner/audio.wav'
+        path = 'audio.wav'
         audio = AudioSegment.from_wav(path)
 
         chunk_length_ms = 60000
         chunks = make_chunks(audio, chunk_length_ms)
 
         for i, chunk in enumerate(chunks):
-            if i > 5:
+            if i > 2:
                 break
             print(f"Transcribing chunk {i + 1}/{len(chunks)}")
             chunk_path = f"chunk_{i}.wav"
@@ -57,46 +57,27 @@ class Meeting_Flow(Flow[Meeting_State]):
 
             except Exception as e:
                 return f"An error occurred: {e}"
-        print(self.state.transcript)
+            finally:
+                if os.path.exists(chunk_path):
+                    os.remove(chunk_path)
 
     @listen(transcribe_meeting)
-    def generate_transcription(self):
-        print("Generating Meeting Minutes")
+    def make_summary(self):
+        input = self.state.transcript
+        print(type(input))
+        summary = Summarisation.Summarise_Info(text=input)
+        Summarisation.Save_Markdown_file(summary)
 
-        crew = Meeting_Minute_crew()
+    @listen(make_summary)
+    def sent_email(self):
+        agent = Email_Agent(
+            'adnanabdullah625@gmail.com',
+            'adnan.sadi@northsouth.edu',
+            '/Users/sadi_/Coding/AI Agents/Meeting Partner/Files/markdown_file.md',
+            str(self.state.transcript)
+        )
 
-        inputs = {
-            "transcript": self.state.transcript
-        }
-
-        meeting_minutes = crew.crew().kickoff(inputs)
-        self.state.meeting_minute = meeting_minutes
-
-    @listen(transcribe_meeting)
-    def create_draft_meeting_minutes(self):
-        print("Creating Draft Meeting Minutes")
-
-        crew = Gmail_Crew()
-
-        inputs = {
-            "body": "sorry, I didn't understand"
-        }
-
-        draft_crew = crew.crew().kickoff(inputs)
-        print(f"Draft Crew: {draft_crew}")
-
-
-def demo():
-    print("Creating Draft Meeting Minutes")
-
-    crew = Gmail_Crew()
-
-    inputs = {
-        "body": "sorry, I didn't understand"
-    }
-
-    draft_crew = crew.crew().kickoff(inputs)
-    print(f"Draft Crew: {draft_crew}")
+        agent.Proceed_Email()
 
 
 def kickoff():
@@ -105,5 +86,4 @@ def kickoff():
 
 
 if __name__ == "__main__":
-    # Meeting_Flow().kickoff()
-    demo()
+    kickoff()
