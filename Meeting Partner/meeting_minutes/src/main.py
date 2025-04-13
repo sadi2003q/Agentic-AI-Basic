@@ -23,7 +23,7 @@ class Meeting_Flow(Flow[Meeting_State]):
 
     @start()
     def transcribe_meeting(self):
-        path = 'audio.wav'
+        path = '/Users/sadi_/Coding/AI Agents/Meeting Partner/meeting_minutes/src/audio.wav'
         audio = AudioSegment.from_wav(path)
 
         chunk_length_ms = 60000

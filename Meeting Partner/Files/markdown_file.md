@@ -1,38 +1,43 @@
 # Summary
 
-# Report on Electric Charge and Current
+# Report on Electricity Fundamentals
 
-## Introduction
-This report delves into the fundamental concepts of electricity, focusing on electric charges, currents, and the underlying forces that govern them. It summarizes key ideas from a physics course, particularly regarding electric charge, Coulomb's law, current, resistance, and circuits.
-
-## Key Concepts
-
+## Key Concepts Covered
 - **Electric Charge**
-  - Electric charge exists in two forms: positive and negative.
-  - Charges are created through the transfer of electrons, often illustrated by rubbing materials (e.g., amber with fur or glass with silk).
-  - When glass is rubbed with silk, it loses electrons and becomes positively charged, while plastic rubbed with fur gains electrons, becoming negatively charged.
-  
-- **Triboelectric Series**
-  - This series ranks materials based on their tendency to gain or lose electrons, allowing predictions on charge interactions between materials.
+  - Discussion on electric charge begins with the concept of excess charge theory.
+  - Examples include charging through friction, such as rubbing amber with fur or glass with silk.
+  - Charges can be classified as positive and negative.
+
+- **Coulomb's Law**
+  - Essential for understanding the forces between charged objects.
+  - The interaction between similar charges results in repulsion, while opposite charges attract.
+
+- **Materials and Charge**
+  - Different materials have varying affinities for electrons, classified through the triboelectric table.
+  - This table helps predict the outcome of rubbing two materials together, indicating which will gain or lose electrons.
 
 - **Atomic Structure**
-  - Atoms consist of a positively charged nucleus (protons) and neutral neutrons, surrounded by negatively charged electrons. 
-  - The overall charge of an object is determined by the balance of these electrons.
+  - Atoms consist of a nucleus (positive protons and neutral neutrons) surrounded by negative electrons.
+  - The overall charge of an object depends on the balance of its electrons.
 
 - **Quantization of Charge**
-  - Electric charge is quantized, meaning it exists in discrete amounts, akin to LEGO bricks. 
-  - The fundamental unit of charge is represented by "e," the charge of a single proton.
+  - Electric charge exists in discrete packets, akin to Lego bricks.
+  - The fundamental unit of charge is represented by 'e', equivalent to the charge of a single proton.
 
-## Assignments and Learning Objectives
-- The course includes assignments that reinforce these concepts, with a focus on understanding how various ideas interconnect in the context of electricity.
-- The goal is to ensure comprehension of key ideas while maintaining engagement and interest in the subject matter.
+## Assignments and Course Materials
+- **Assignments**
+  - Assignment 01 and Assignment 02, which relate to the fundamental concepts discussed.
+  
+- **Lecture Notes**
+  - General Physics Topper Course lecture notes play a crucial role in clarifying the concepts of electric charge, current, resistance, and circuits.
 
-## Conclusion
-This report outlines essential principles of electricity, including the behavior of electric charges, the significance of the triboelectric series, and the quantization of charge. Understanding these concepts is foundational for further studies in physics and practical applications in electronics.
+## Important Terms
+- **Triboelectric Table**: Ranks materials based on their ability to gain or lose electrons.
+- **Quantization**: The concept that charge is discrete rather than continuous.
 
-## References
-- General Physics Topper Course Lecture Notes
-- "Electric Charge and Electric Field" - HyperPhysics. Retrieved from: [HyperPhysics](http://hyperphysics.phy-astr.gsu.edu/hbase/electric/elecha.html)
-- "Charge Quantization" - Khan Academy. Retrieved from: [Khan Academy](https://www.khanacademy.org/science/physics/electricity-and-magnetism/electric-charge-and-force) 
+## Summary
+The report dives into the fundamentals of electricity, focusing on electric charge, how it can be generated and quantified, and the properties of materials that affect these charges. The course materials emphasize understanding these concepts to provide a comprehensive grasp of electrical phenomena.
 
-Overall, this report provides a structured overview of electric charge fundamentals, emphasizing the importance of these concepts in understanding electricity as a whole.
+## Sources
+- [Khan Academy - Electricity and Magnetism](https://www.khanacademy.org/science/physics/electricity-and-magnetism)
+- [HyperPhysics - Electric Charge](http://hyperphysics.phy-astr.gsu.edu/hbase/electric/elecha.html)
